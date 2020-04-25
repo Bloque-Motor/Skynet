@@ -22,10 +22,7 @@ for x in range(len(subfolders)):
       if not os.path.exists('Output/'):
           os.makedirs('Output/')
       f = open(filepath, "a")
-<<<<<<< HEAD
-      f.close()
-=======
->>>>>>> origin/Dev_inigo
+
 
 
 

@@ -10,7 +10,7 @@ for x in range(len(subfolders)):
 
     subfoldersSpeakers = [f.name for f in os.scandir(subfolders[x]) if f.is_dir()]
 
-    for y in range (0,1):
+    for y in range (len(subfoldersSpeakers)):
 
         locutor = subfoldersSpeakers[y]
         ruta = locutor + "/*"

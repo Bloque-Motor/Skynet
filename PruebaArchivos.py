@@ -8,21 +8,26 @@ subfolders = [ f.name for f in os.scandir(path) if f.is_dir() ]
 
 for x in range(len(subfolders)):
 
-   locutor = subfolders[x]
-   ruta = locutor + "/*"
+    ruta = path + subfolders +"/"
+    subfoldersSpeakers = [f.name for f in os.scandir(path) if f.is_dir()]
 
-   for filename in glob.glob(os.path.join(path, ruta)):
-    with open(os.path.join(os.getcwd(), filename), 'r') as f:
+    for y in range (0,2):
+        locutor = subfoldersSpeakers[y]
+        ruta = locutor + "/*"
 
-      print(ntpath.basename(filename))
+        for filename in glob.glob(os.path.join(path, ruta)):
+            with open(os.path.join(os.getcwd(), filename), 'r') as f:
 
-      outputName = "output_" + ntpath.basename(filename)
+                print(ntpath.basename(filename))
 
-      filepath = os.path.join('Output/', outputName)
-      if not os.path.exists('Output/'):
-          os.makedirs('Output/')
-      f = open(filepath, "a")
-      f.close()
+                outputName = "output_" + ntpath.basename(filename)
+
+                filepath = os.path.join('Output/', outputName)
+                if not os.path.exists('Output/'):
+                    os.makedirs('Output/')
+                f = open(filepath, "a")
+                f.close()
+
 
 
 

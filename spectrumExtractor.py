@@ -16,18 +16,6 @@ AudioFreq = fft(Audiodata)
 AudioFreq = AudioFreq[0:int(np.ceil((n+1)/2.0))] #Half of the spectrum
 MagFreq = np.abs(AudioFreq) # Magnitude
 MagFreq = MagFreq / float(n)
-# # power spectrum
-# MagFreq = MagFreq**2
-# if n % 2 > 0: # ffte odd
-#     MagFreq[1:len(MagFreq)] = MagFreq[1:len(MagFreq)] * 2
-# else:# fft even
-#     MagFreq[1:len(MagFreq) -1] = MagFreq[1:len(MagFreq) - 1] * 2
-#
-# plt.figure()
-# freqAxis = np.arange(0,int(np.ceil((n+1)/2.0)), 1.0) * (fs / n);
-# plt.plot(freqAxis/1000.0, 10*np.log10(MagFreq)) #Power spectrum
-# plt.xlabel('Frequency (kHz)'); plt.ylabel('Power spectrum (dB)');
-
 
 #Spectrogram
 from scipy import signal
@@ -40,9 +28,5 @@ ax.set_axis_off()
 fig.add_axes(ax)
 plt.pcolormesh(t, f,10*np.log10(Sxx)) # dB spectrogram
 
-#plt.pcolormesh(t, f,Sxx) # Lineal spectrogram
-# plt.ylabel('Frequency [Hz]')
-# plt.xlabel('Time [seg]')
-# plt.title('Spectrogram with scipy.signal',size=16);
 plt.savefig("out/test.png", bbox_inches=0, transparent=True, pad_inches=0)
 plt.show()

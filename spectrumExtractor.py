@@ -30,4 +30,5 @@ def extract(input, output):
     plt.pcolormesh(t, f, 10 * np.log10(sxx))  # dB spectrogram
 
     plt.savefig(output, bbox_inches=0, transparent=True, pad_inches=0)
-    plt.show()
+    # plt.show()
+    plt.close()

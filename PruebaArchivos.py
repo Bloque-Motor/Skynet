@@ -6,7 +6,7 @@ path = 'Data/'
 
 subfolders = [ f.name for f in os.scandir(path) if f.is_dir() ]
 
-for x in range(0,2):
+for x in range(len(subfolders)):
 
    locutor = subfolders[x]
    ruta = locutor + "/*"

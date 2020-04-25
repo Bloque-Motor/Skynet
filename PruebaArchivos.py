@@ -6,7 +6,7 @@ path = 'Data/'
 
 subfolders = [ f.name for f in os.scandir(path) if f.is_dir() ]
 
-for x in range(len(subfolders)):
+for x in range(0,2):
 
    locutor = subfolders[x]
    ruta = locutor + "/*"
@@ -16,7 +16,7 @@ for x in range(len(subfolders)):
 
       print(ntpath.basename(filename))
 
-      outputName = ntpath.basename(filename) + "_output"
+      outputName = "output_" + ntpath.basename(filename)
 
       filepath = os.path.join('Output/', outputName)
       if not os.path.exists('Output/'):

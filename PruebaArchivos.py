@@ -17,7 +17,7 @@ for x in range(len(subfolders)):
         locutor = subfoldersSpeakers[y]
         ruta = locutor + "/*"
         path = subfolders[x]
-
+        print(str(locutor) + " " + str(sentence))
         recording = 0
 
         for filename in glob.glob(os.path.join(subfolders[x], ruta)):

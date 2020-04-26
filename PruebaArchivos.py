@@ -2,6 +2,7 @@ import os
 import glob
 import ntpath
 import spectrumExtractor as se
+# import random as rnd
 
 path = 'Data/'
 
@@ -23,14 +24,20 @@ for x in range(len(subfolders)):
         for filename in glob.glob(os.path.join(subfolders[x], ruta)):
             with open(os.path.join(os.getcwd(), filename), 'r') as f:
 
-                # print(ntpath.basename(filename))
-
                 outputName = locutor + "_" + sentence + "_" + str(recording)
                 recording += 1
 
-                filepath = os.path.join('Output/', outputName)
-                if not os.path.exists('Output/'):
-                    os.makedirs('Output/')
-                # f = open(filepath, "w")
-                # f.close()
+                # if rnd.randint(1, 101) > 80:
+                if int(locutor[4:]) > 849:
+                    filepath = os.path.join('Dataset/Validate', outputName)
+                else:
+                    filepath = os.path.join('Dataset/Train', outputName)
+
+                if not os.path.exists('Dataset/'):
+                    os.makedirs('Dataset/')
+                if not os.path.exists('Dataset/Validate'):
+                    os.makedirs('Dataset/Validate')
+                if not os.path.exists('Dataset/Train'):
+                    os.makedirs('Dataset/Train')
+
                 se.extract(filename, filepath)

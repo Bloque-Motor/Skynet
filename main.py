@@ -1,5 +1,8 @@
-print('Bienvenido a Aplicaciones de la biometría de la voz.')
-# import spectrumExtractor as se
-import PruebaArchivos as fi
+import moveFiles as atleti
+import PruebaArchivos as aupa
 
-fi
+
+def main():
+    print('Bienvenido a Aplicaciones de la biometría de la voz.')
+    aupa
+    atleti

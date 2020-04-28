@@ -47,16 +47,16 @@ for filename in os.listdir(sourcePath):
 
         sentence = filename[11:13]
         if sentence == 'S1':
-            dest = dest + "S1"
+            dest = dest + "S1/"
         elif sentence == 'S2':
-            dest = dest + "S2"
+            dest = dest + "S2/"
         elif sentence == 'S3':
-            dest = dest + "S3"
+            dest = dest + "S3/"
         elif sentence == 'S4':
-            dest = dest + "S4"
+            dest = dest + "S4/"
         elif sentence == 'S5':
-            dest = dest + "S5"
+            dest = dest + "S5/"
 
-        shutil.move(sourcePath + filename, dest)
+        shutil.move(sourcePath + filename, dest, )
 
 

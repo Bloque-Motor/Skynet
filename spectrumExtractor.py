@@ -9,7 +9,7 @@ def extract(input, output):
     # Plot the audio signal in time
     plt.plot(audiodata)
     plt.figure()
-    plt.show()
+    # plt.show()
 
     # Spectrogram
     from scipy import signal

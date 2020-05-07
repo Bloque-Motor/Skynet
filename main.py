@@ -1,6 +1,6 @@
-import spectrumExtractor as se
+import moveFiles as mf
 
 
 def main():
     print('Bienvenido a Aplicaciones de la biometría de la voz.')
-    se.extract('trn_079772.wav', 'test.png')
+    mf

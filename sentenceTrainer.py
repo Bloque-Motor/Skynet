@@ -1,31 +1,18 @@
-# import tensorflow as tf
-# from tensorflow.keras.models import Sequential
-# from tensorflow.keras.layers import Dense, Conv2D, Flatten, Dropout, MaxPooling2D
-# from tensorflow.keras.preprocessing.image import ImageDataGenerator
-#
-# classesSentence = ['S1','S2','S3','S4','S5']
-# num_Sentences = len(classesSentence)
-#
-# img_width, img_height = 640, 480
-#
-# train_path = 'Data'
-
-
-# importing libraries
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D
 from keras.layers import Activation, Dropout, Flatten, Dense
 from keras import backend as K
+import os
 
 
-img_width, img_height = 224, 224
+img_width, img_height = 640, 480
 
-train_data_dir = 'v_data/train'
-validation_data_dir = 'v_data/test'
-nb_train_samples = 400
-nb_validation_samples = 100
-epochs = 10
+train_data_dir = 'Dataset/Train'
+validation_data_dir = 'Dataset/Validate'
+nb_train_samples = 36486
+nb_validation_samples = 8789
+epochs = 50
 batch_size = 16
 
 if K.image_data_format() == 'channels_first':
@@ -78,5 +65,10 @@ model.fit_generator(train_generator,
 	steps_per_epoch = nb_train_samples // batch_size,
 	epochs = epochs, validation_data = validation_generator,
 	validation_steps = nb_validation_samples // batch_size)
+
+if not os.path.exists('Model/'):
+	os.makedirs('Model/')
+if not os.path.exists('Model/Output/'):
+	os.makedirs('Model/Output/')
 
 model.save_weights('model_saved.h5')

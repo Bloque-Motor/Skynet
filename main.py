@@ -1,6 +1,6 @@
-import moveFiles as mf
+import sentenceTrainer as st
 
 
 def main():
     print('Bienvenido a Aplicaciones de la biometría de la voz.')
-    mf
+    st

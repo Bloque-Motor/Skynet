@@ -1,6 +1,5 @@
 import os
 import shutil
-import glob
 import ntpath
 
 print('Extracting Data for Speaker Trainer...')
@@ -12,12 +11,12 @@ sourcePathTrain = sourcePath + "Train/"
 destinationPath = "Dataset/"
 
 speakersValidate = [f.path for f in os.scandir(sourcePathValidate) if f.is_dir()]
-speakersTrainers = [f.path for f in os.scandir(sourcePathValidate) if f.is_dir()]
+speakersTrainers = [f.path for f in os.scandir(sourcePathTrain) if f.is_dir()]
 
 for x in range(len(speakersValidate)):
 
     speakerV = ntpath.basename(speakersValidate[x])
-    extractValidatePath = sourcePathTrain + speakerV + "/"
+    extractValidatePath = sourcePathValidate + speakerV + "/"
 
     for filename in os.listdir(extractValidatePath):
 
@@ -25,6 +24,10 @@ for x in range(len(speakersValidate)):
 
         shutil.move(extractValidatePath + filename, destinationPath, )
 
+    try:
+        os.rmdir(extractValidatePath)
+    except OSError as e:
+        print("Error: %s : %s" % (sourcePathValidate, e.strerror))
 
 
 for y in range(len(speakersValidate)):
@@ -37,6 +40,11 @@ for y in range(len(speakersValidate)):
       if filename.endswith(".png"):
 
         shutil.move(extractTrainPath + filename, destinationPath, )
+
+    try:
+        os.rmdir(extractTrainPath)
+    except OSError as e:
+        print("Error: %s : %s" % (sourcePathValidate, e.strerror))
 
 
 try:

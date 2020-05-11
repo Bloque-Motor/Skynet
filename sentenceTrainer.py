@@ -31,20 +31,18 @@ else:
 model = Sequential()
 model.add(Conv2D(32, (4, 4), input_shape=input_shape, strides=(2, 2)))
 model.add(Activation('relu'))
-# model.add(MaxPooling2D(pool_size=(2, 2)))
 
 model.add(Conv2D(32, (4, 4), strides=(2, 2)))
 model.add(Activation('relu'))
-# model.add(MaxPooling2D(pool_size=(2, 2)))
 
 model.add(Conv2D(64, (2, 2)))
 model.add(Activation('relu'))
-# model.add(MaxPooling2D(pool_size=(2, 2)))
 
 model.add(Flatten())
 model.add(Dense(64))
 model.add(Activation('sigmoid'))
 # model.add(Dropout(0.5))
+
 model.add(Dense(5, input_dim=2))
 model.add(Activation('softmax'))
 
@@ -66,11 +64,6 @@ validation_generator = test_datagen.flow_from_directory(
     target_size=(img_width, img_height),
     batch_size=batch_size)
 
-if not os.path.exists('Model/'):
-    os.makedirs('Model/')
-if not os.path.exists('Model/Output/'):
-    os.makedirs('Model/Output/')
-
 filepath = "Model/Output/Checkpoints/model-{epoch:02d}-{val_accuracy:.2f}.hdf5"
 
 checkpoint_callback = kc.ModelCheckpoint(
@@ -79,7 +72,7 @@ checkpoint_callback = kc.ModelCheckpoint(
 
 callback_list = [checkpoint_callback]
 
-model.fit_generator(train_generator,
+model.fit(train_generator,
                     steps_per_epoch=nb_train_samples // batch_size,
                     epochs=epochs, validation_data=validation_generator,
                     validation_steps=nb_validation_samples // batch_size,
@@ -88,4 +81,4 @@ model.fit_generator(train_generator,
                     callbacks=callback_list
                     )
 
-model.save_weights('Model/Output/model_saved.h5')
+model.save_weights('Model/Output/model_sentence.h5')

@@ -7,6 +7,10 @@ sourcePath = "Dataset/"
 destinationValidate = sourcePath + "Validate/"
 destinationTrain = sourcePath + "Train/"
 
+if not os.path.exists(destinationValidate):
+    os.makedirs(destinationValidate)
+if not os.path.exists(destinationTrain):
+    os.makedirs(destinationTrain)
 
 if not os.path.exists(destinationValidate + 'S1'):
     os.makedirs(destinationValidate + 'S1')

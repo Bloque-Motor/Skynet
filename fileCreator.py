@@ -3,10 +3,9 @@ import glob
 import ntpath
 import spectrumExtractor as se
 
-# import random as rnd
-
 
 def generate():
+    count = 0
     path = 'Data/'
     output_path = "Dataset/"
     destination_validate = output_path + "Validate/"
@@ -25,14 +24,12 @@ def generate():
 
             locutor = subfolders_speakers[y]
             ruta = locutor + "/*"
-            path = subfolders[x]
-            print(str(locutor) + " " + str(sentence))
             recording = 0
 
             for filename in glob.glob(os.path.join(subfolders[x], ruta)):
                 with open(os.path.join(os.getcwd(), filename), 'r') as f:
 
-                    outputName = locutor + "_" + sentence + "_" + str(recording)
+                    output_name = locutor + "_" + sentence + "_" + str(recording)
                     recording += 1
 
                     # if rnd.randint(1, 101) > 80:
@@ -52,7 +49,11 @@ def generate():
                     elif sentence == 'S5':
                         dest = dest + "S5/"
 
-                    filepath = os.path.join(dest, outputName)
+                    filepath = os.path.join(dest, output_name)
+
+                    count += 1
+                    percentage = (count / 45275) * 100
+                    print("Extracting spectrogram " + str(count) + " of 45275. [" + str(percentage) + "% completed.]")
 
                     se.extract(filename, filepath)
 

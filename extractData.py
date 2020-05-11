@@ -27,7 +27,7 @@ for x in range(len(speakersValidate)):
     try:
         os.rmdir(extractValidatePath)
     except OSError as e:
-        print("Error: %s : %s" % (sourcePathValidate, e.strerror))
+        print("Error: %s : %s" % (extractValidatePath, e.strerror))
 
 
 for y in range(len(speakersValidate)):
@@ -44,7 +44,7 @@ for y in range(len(speakersValidate)):
     try:
         os.rmdir(extractTrainPath)
     except OSError as e:
-        print("Error: %s : %s" % (sourcePathValidate, e.strerror))
+        print("Error: %s : %s" % (extractTrainPath, e.strerror))
 
 
 try:

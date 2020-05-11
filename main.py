@@ -1,5 +1,9 @@
-print('Bienvenido a Aplicaciones de la biometría de la voz.')
-# import spectrumExtractor as se
-import PruebaArchivos as fi
+import fileCreator as fC
+import warnings
+import sentenceTrainer as st
 
-fi
+
+def main():
+    print('Bienvenido a Aplicaciones de la biometría de la voz.')
+    warnings.filterwarnings("ignore", category=RuntimeWarning)
+    st

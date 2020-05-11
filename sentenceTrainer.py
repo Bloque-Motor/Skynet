@@ -6,6 +6,14 @@ from keras.layers import Activation, Dropout, Flatten, Dense
 from keras import backend as K
 import os
 
+
+if not os.path.exists('Model/'):
+    os.makedirs('Model/')
+if not os.path.exists('Model/Output/'):
+    os.makedirs('Model/Output/')
+if not os.path.exists('Model/Output/Checkpoints'):
+    os.makedirs('Model/Output/Checkpoints')
+
 img_width, img_height = 160, 120
 
 train_data_dir = 'Dataset/Train'
@@ -40,8 +48,6 @@ model.add(Activation('sigmoid'))
 model.add(Dense(5, input_dim=2))
 model.add(Activation('softmax'))
 
-# model.add(Dense(8, input_dim=4, activation='relu'))
-# model.add(Dense(5, activation='softmax'))
 
 model.compile(loss='categorical_crossentropy',
               optimizer='adam',
@@ -65,7 +71,7 @@ if not os.path.exists('Model/'):
 if not os.path.exists('Model/Output/'):
     os.makedirs('Model/Output/')
 
-filepath = "Model/Output/model-{epoch:02d}-{val_accuracy:.2f}.hdf5"
+filepath = "Model/Output/Checkpoints/model-{epoch:02d}-{val_accuracy:.2f}.hdf5"
 
 checkpoint_callback = kc.ModelCheckpoint(
     filepath, monitor='val_accuracy', verbose=1,
@@ -82,9 +88,4 @@ model.fit_generator(train_generator,
                     callbacks=callback_list
                     )
 
-if not os.path.exists('Model/'):
-    os.makedirs('Model/')
-if not os.path.exists('Model/Output/'):
-    os.makedirs('Model/Output/')
-
-model.save_weights('model_saved.h5')
+model.save_weights('Model/Output/model_saved.h5')

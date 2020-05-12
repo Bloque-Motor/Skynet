@@ -20,8 +20,8 @@ train_data_dir = 'Dataset/Train'
 validation_data_dir = 'Dataset/Validate'
 nb_train_samples = 36486
 nb_validation_samples = 8789
-epochs = 50
-batch_size = 16
+epochs = 20
+batch_size = 128
 
 if K.image_data_format() == 'channels_first':
     input_shape = (3, img_width, img_height)
@@ -29,8 +29,9 @@ else:
     input_shape = (img_width, img_height, 3)
 
 model = Sequential()
-model.add(Conv2D(32, (4, 4), input_shape=input_shape, strides=(2, 2)))
+model.add(Conv2D(32, (7, 7), input_shape=input_shape, strides=(2, 2)))
 model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(3,3), strides=(2,2)))
 
 model.add(Conv2D(32, (4, 4), strides=(2, 2)))
 model.add(Activation('relu'))

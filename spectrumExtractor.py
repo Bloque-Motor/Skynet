@@ -14,7 +14,7 @@ def extract(input, output):
     # Spectrogram
     from scipy import signal
     my_dpi = 96
-    N = 64  # Number of point in the fft
+    N = 512  # Number of point in the fft
     f, t, sxx = signal.spectrogram(audiodata, fs, window=signal.blackman(N), nfft=N)
     fig = plt.figure(frameon=False, figsize=(160/my_dpi, 120/my_dpi), dpi=my_dpi)
     plt.axis('off')

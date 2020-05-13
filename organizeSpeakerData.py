@@ -27,7 +27,7 @@ for filename in os.listdir(sourcePath):
 for folderName in os.listdir(destinationTrain):
     files = [f.path for f in os.scandir(destinationTrain + folderName) if f.is_file()]
     num_files = len(files)
-    val_num = math.floor(0.2 * num_files)
+    val_num = max(math.ceil(0.2 * num_files), 1)
     to_move = []
     for x in range(0, val_num):
         repeated = True

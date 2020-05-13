@@ -62,11 +62,6 @@ def analyze(file):
 
     result_sentence = model_sentence.predict(spectrogram)
 
-    # index, value = max(enumerate(result_sentence), key=operator.itemgetter(1))
-    # sentences = ['S1', 'S2', 'S3', 'S4', 'S5']
-    #
-    # output = ['Sentence: ', sentences[index], '  Confidence: ', str(value)]
-
     arrayAux = numpy.array(result_sentence).tolist() # convertimos el numpy en un array, por cosas curiosas el numpy trae doble [[]], aqui lo dividimos en diferentes numeros
 
     arrayNum = max(arrayAux) # aquí nos quedamos con el array con un solo []

@@ -62,11 +62,19 @@ def analyze(file):
 
     result_sentence = model_sentence.predict(spectrogram)
 
-    index, value = max(enumerate(result_sentence), key=operator.itemgetter(1))
-    sentences = ['S1', 'S2', 'S3', 'S4', 'S5']
+    # index, value = max(enumerate(result_sentence), key=operator.itemgetter(1))
+    # sentences = ['S1', 'S2', 'S3', 'S4', 'S5']
     #
     # output = ['Sentence: ', sentences[index], '  Confidence: ', str(value)]
 
+    arrayAux = numpy.array(result_sentence).tolist() # convertimos el numpy en un array, por cosas curiosas el numpy trae doble [[]], aqui lo dividimos en diferentes numeros
+
+    arrayNum = max(arrayAux) # aquí nos quedamos con el array con un solo []
+    maxValue = max(arrayNum) # cogemos el maximo valor del array
+
+    index = arrayNum.index(maxValue) # vemos en que posicion se encuentra el valor maximo
+
+    print('Tras el analisis, el archivo introducido se asemeja a la Sentence ' + str(index+1) + ' con una confianza del : ' + str(round(maxValue*100,4)) + '%') # el metodo este redondea, no se hasta que punto vale, sino usamos un %.2f para mostrar solo 2
     print(result_sentence)
 
     os.remove(temp_file)

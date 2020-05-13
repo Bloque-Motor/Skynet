@@ -17,7 +17,7 @@ if not os.path.exists(sentence_path):
 if not os.path.exists(checkpoint_path):
     os.makedirs(checkpoint_path)
 
-files = [f.path for f in os.scandir(sentence_path) if f.is_file()]
+files = [f.path for f in os.scandir(sentence_path) if f.path.endswith('.h5')]
 num_files = len(files)
 
 model_name = [sentence_path, 'model_sentence_', str(num_files), '.h5']
@@ -50,7 +50,7 @@ model.add(Activation('relu'))
 model.add(Flatten())
 model.add(Dense(64))
 model.add(Activation('sigmoid'))
-model.add(Dropout(0.5))
+model.add(Dropout(0.2))
 
 model.add(Dense(5, input_dim=2))
 model.add(Activation('softmax'))

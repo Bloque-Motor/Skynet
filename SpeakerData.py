@@ -18,7 +18,7 @@ for filename in os.listdir(sourcePath):
 
         shutil.move(sourcePath + filename, sourcePath + rutaSpeaker, )
 
-speakers = [f.path for f in os.scandir(sourcePath) if f.is_dir()]
+speakers = [f.path for f in os.scandir(sourcePath) if f.is_dir()] # cuidado con ejecutar dos veces que toma train y validate como speakers, se podria hacer un remove despues
 arr = []
 for x in range(len(speakers)):
     speakerNumber = ntpath.basename(speakers[x])
@@ -32,7 +32,7 @@ def takeSecond(elem):
 arr.sort(key=takeSecond, reverse=True)
 print(arr[0:4]) #poner el numero de directorios que mostrar
 
-for y in arr[:2]: #aumentar al numero de 25, to estaba trajando con una muestra más peuqeña por eso 3
+for y in arr[:2]: #aumentar al numero de 25, yo estaba trajando con una muestra más peuqeña por eso 3
 
     speakerPath = y[0]
 
@@ -45,7 +45,7 @@ for y in arr[:2]: #aumentar al numero de 25, to estaba trajando con una muestra 
 
         shutil.move(sourcePath + speakerPath + "/" + filename, destinationPath, )
 
-for z in arr[3:4]: #aumentar al numero de 25, to estaba trajando con una muestra más pequeña por eso 3 a 4
+for z in arr[2:4]: #aumentar al numero de 25, yo estaba trajando con una muestra más pequeña por eso 3 a 4
 
     speakerPath = z[0]
 

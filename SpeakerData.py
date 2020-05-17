@@ -1,17 +1,24 @@
 import os
 import shutil
 import ntpath
+import math
+import random
 
 print('Getting 25 speakers...')
 
 sourcePath = "Dataset/"
-sourcePathValidate = sourcePath + "Validate/"
-sourcePathTrain = sourcePath + "Train/"
+destinationValidate = sourcePath + "Validate/"
+destinationTrain = sourcePath + "Train/"
+
+if not os.path.exists(destinationValidate):
+    os.makedirs(destinationValidate)
+if not os.path.exists(destinationTrain):
+    os.makedirs(destinationTrain)
 
 for filename in os.listdir(sourcePath):
     if filename.endswith(".png"):
-        speaker = int(filename[4:10])
-        rutaSpeaker = "spk_" + str(speaker) + "/"
+        speaker = filename[4:10]
+        rutaSpeaker = "spk_" + speaker + "/"
 
         if not os.path.exists(sourcePath + rutaSpeaker):
             os.makedirs(sourcePath + rutaSpeaker)
@@ -32,27 +39,31 @@ def takeSecond(elem):
 arr.sort(key=takeSecond, reverse=True)
 print(arr[0:4]) #poner el numero de directorios que mostrar
 
-for y in arr[:2]: #aumentar al numero de 25, yo estaba trajando con una muestra más peuqeña por eso 3
+for y in arr[:4]: #poner el numero 25
 
-    speakerPath = y[0]
+    speakersPath = y[0]
+    files = [f.path for f in os.scandir(sourcePath + speakersPath + "/") if f.is_file()]
+    num_files = len(files)
+    #print(num_files)
+    val_num = max(math.ceil(0.2 * num_files), 1)
+    #print(val_num)
+    to_move = []
 
-    for filename in os.listdir(sourcePath + speakerPath + "/"):
+    for x in range(0, val_num):
+        repeated = True
+        while repeated:
+            rnd = random.randint(0, num_files - (x + 1))
+            file = files[rnd]
+            if not file in to_move:
+                to_move += [file]
+                repeated = False
 
-        destinationPath = sourcePathTrain + speakerPath + "/"
+    for file in to_move:
+        speaker = file[23:29]
+        dest = destinationValidate + "spk_" + speaker + "/"
+        if not os.path.exists(dest):
+            os.makedirs(dest)
+        shutil.move(file, dest,)
 
-        if not os.path.exists(destinationPath):
-            os.makedirs(destinationPath)
 
-        shutil.move(sourcePath + speakerPath + "/" + filename, destinationPath, )
-
-for z in arr[2:4]: #aumentar al numero de 25, yo estaba trajando con una muestra más pequeña por eso 3 a 4
-
-    speakerPath = z[0]
-
-    for filename in os.listdir(sourcePath + speakerPath + "/"):
-        destinationPath = sourcePathValidate + speakerPath + "/"
-        if not os.path.exists(destinationPath):
-            os.makedirs(destinationPath)
-
-        shutil.move(sourcePath + speakerPath + "/" + filename, destinationPath, )
 

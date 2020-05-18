@@ -10,8 +10,34 @@ sourcePathTrain = sourcePath + "Train/"
 
 destinationPath = "Dataset/"
 
-speakersValidate = [f.path for f in os.scandir(sourcePathValidate) if f.is_dir()]
-speakersTrainers = [f.path for f in os.scandir(sourcePathTrain) if f.is_dir()]
+if os.path.exists(sourcePathValidate):
+    speakersValidate = [f.path for f in os.scandir(sourcePathValidate) if f.is_dir()]
+if os.path.exists(sourcePathValidate):
+    speakersTrainers = [f.path for f in os.scandir(sourcePathTrain) if f.is_dir()]
+
+speakers = [f.path for f in os.scandir(sourcePath) if f.is_dir()]
+
+if sourcePathValidate in speakers:
+    speakers.remove(sourcePathValidate)
+
+if sourcePathTrain in speakers:
+    speakers.remove(sourcePathTrain)
+
+for z in range(len(speakers)):
+
+    speakerS = ntpath.basename(speakers[z])
+    extractSpkData = sourcePath + speakerS + "/"
+
+    for filename in os.listdir(extractSpkData):
+
+      if filename.endswith(".png"):
+
+        shutil.move(extractSpkData + filename, destinationPath, )
+
+    try:
+        os.rmdir(extractSpkData)
+    except OSError as e:
+        print("Error: %s : %s" % (extractSpkData, e.strerror))
 
 for x in range(len(speakersValidate)):
 
@@ -34,7 +60,7 @@ try:
 except OSError as e:
     print("Error: %s : %s" % (sourcePathValidate, e.strerror))
 
-for y in range(len(speakersValidate)):
+for y in range(len(speakersTrainers)):
 
     speakerT = ntpath.basename(speakersTrainers[y])
     extractTrainPath = sourcePathTrain + speakerT + "/"

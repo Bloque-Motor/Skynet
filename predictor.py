@@ -66,10 +66,16 @@ def analyze(file):
 
     arrayNum = max(arrayAux) # aquí nos quedamos con el array con un solo []
     maxValue = max(arrayNum) # cogemos el maximo valor del array
+    indexArray = [1,2,3,4,5]
   
     index = arrayNum.index(maxValue) # vemos en que posicion se encuentra el valor maximo
+    indexArray.remove(index+1)
 
     print('Tras el analisis, el archivo introducido se asemeja a la Sentence ' + str(index+1) + ' con una confianza del : ' + str(round(maxValue*100,4)) + '%') # el metodo este redondea, no se hasta que punto vale, sino usamos un %.2f para mostrar solo 2
     print(result_sentence)
+    print('El resto de confianzas para el resto de sentencias es: ')
+
+    for x in indexArray:
+        print('La confianza para la Sentence ' + str(x) + ' es del: ' + str(round(arrayNum[x-1]*100,4)) + '%')
 
     os.remove(temp_file)

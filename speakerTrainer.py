@@ -28,7 +28,7 @@ validation_data_dir = 'Dataset/Validate'
 img_width, img_height = 160, 120
 nb_train_samples = 36486
 nb_validation_samples = 8789
-epochs = 20
+epochs = 10
 batch_size = 128
 
 if K.image_data_format() == 'channels_first':
@@ -52,7 +52,7 @@ model.add(Dense(64))
 model.add(Activation('sigmoid'))
 model.add(Dropout(0.2))
 
-model.add(Dense(816, input_dim=2))
+model.add(Dense(50, input_dim=2))
 model.add(Activation('softmax'))
 
 model.compile(loss='categorical_crossentropy',

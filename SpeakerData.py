@@ -4,8 +4,9 @@ import ntpath
 import math
 import random
 
-print('Getting 25 speakers...')
 
+numSpeakers = 50
+print('Extracting ' + str(numSpeakers) + ' speakers...')
 sourcePath = "Dataset/"
 destinationValidate = sourcePath + "Validate/"
 destinationTrain = sourcePath + "Train/"
@@ -38,9 +39,9 @@ def takeSecond(elem):
     return elem[1]
 
 arr.sort(key=takeSecond, reverse=True)
-print(arr[0:4]) #poner el numero de directorios que mostrar
+print(arr[0:numSpeakers]) #poner el numero de directorios que mostrar
 
-for y in arr[:4]: #poner el numero 25
+for y in arr[:numSpeakers]: #poner el numero 25
 
     speakersPath = y[0]
 
